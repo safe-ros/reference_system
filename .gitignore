@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Python binaries
+__pycache__
+*.pyc
+*.pyo
+
