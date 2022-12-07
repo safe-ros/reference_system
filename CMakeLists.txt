@@ -31,6 +31,7 @@ add_library(reference_system_nodes SHARED
   src/rotterdam.cpp
   src/taipei.cpp
   src/tripoli.cpp
+  src/utils.cpp
 )
 
 ament_target_dependencies(reference_system_nodes

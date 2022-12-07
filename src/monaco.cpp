@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/monaco.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -28,6 +29,7 @@ Monaco::Monaco(rclcpp::NodeOptions options)
     [this](geometry_msgs::msg::Twist::UniquePtr msg) {
       (void) msg;
       std_msgs::msg::Float32 pub_msg;
+      pub_msg.data = random_number<float>();
       ohio_publisher_->publish(pub_msg);
     });
 }

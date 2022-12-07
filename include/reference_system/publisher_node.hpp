@@ -43,15 +43,19 @@ public:
 
   virtual ~PublisherNode() = default;
 
+  virtual void populate_msg(MsgType& /*msg*/) {};
+
 protected:
   void on_timer()
   {
-    MsgType msg;
-    publisher_->publish(msg);
+    auto msg = std::make_unique<MsgType>();
+    populate_msg(*msg);
+    publisher_->publish(std::move(msg));
   }
 
   typename rclcpp::Publisher<MsgType>::SharedPtr publisher_;
   rclcpp::TimerBase::SharedPtr timer_;
+
 };
 }  // namespace reference_system
 

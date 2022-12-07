@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/publisher_nodes.hpp"
+#include "utils.hpp"
 
 #include <chrono>
 
@@ -75,9 +76,19 @@ Cordoba::Cordoba(rclcpp::NodeOptions options)
 {
 }
 
+void Cordoba::populate_msg(std_msgs::msg::Float32 &msg)
+{
+  msg.data = random_number<float>(-10.0, 10.0);
+}
+
 Freeport::Freeport(rclcpp::NodeOptions options)
 : PublisherNode(kFreeportConfig, options)
 {
+}
+
+void Freeport::populate_msg(std_msgs::msg::Int64 &msg)
+{
+  msg.data = random_number<int64_t>();
 }
 
 Medellin::Medellin(rclcpp::NodeOptions options)
@@ -85,9 +96,19 @@ Medellin::Medellin(rclcpp::NodeOptions options)
 {
 }
 
+void Medellin::populate_msg(std_msgs::msg::Int32 &msg)
+{
+  msg.data = random_number<int32_t>();
+}
+
 Portsmouth::Portsmouth(rclcpp::NodeOptions options)
 : PublisherNode(kPortsmouthConfig, options)
 {
+}
+
+void Portsmouth::populate_msg(std_msgs::msg::String &msg)
+{
+  msg.data = random_string(32);
 }
 
 Delhi::Delhi(rclcpp::NodeOptions options)
@@ -95,15 +116,31 @@ Delhi::Delhi(rclcpp::NodeOptions options)
 {
 }
 
+void Delhi::populate_msg(sensor_msgs::msg::Image &msg)
+{
+  msg = random_image(640*480*3);
+}
+
 Hebron::Hebron(rclcpp::NodeOptions options)
 : PublisherNode(kHebronConfig, options)
 {
+}
+
+void Hebron::populate_msg(geometry_msgs::msg::Quaternion &msg)
+{
+  msg = random_quaternion();
 }
 
 Kingston::Kingston(rclcpp::NodeOptions options)
 : PublisherNode(kKingstonConfig, options)
 {
 }
+
+void Kingston::populate_msg(geometry_msgs::msg::Vector3 &msg)
+{
+  msg = random_vector3();
+}
+
 }  // namespace reference_system
 
 #include "rclcpp_components/register_node_macro.hpp"

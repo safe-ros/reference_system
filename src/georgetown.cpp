@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/georgetown.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -39,6 +40,7 @@ Georgetown::Georgetown(rclcpp::NodeOptions options)
   timer_ = create_wall_timer(
     std::chrono::milliseconds(50), [this]() {
       std_msgs::msg::Float64 msg;
+      msg.data = random_number<double>();
       this->volga_publisher_->publish(msg);
     });
 }
