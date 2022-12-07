@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/ponce.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -50,7 +51,7 @@ Ponce::Ponce(rclcpp::NodeOptions options)
     10,
     [this](sensor_msgs::msg::PointCloud2::UniquePtr msg) {
       (void) msg;
-      auto cmd = geometry_msgs::msg::TwistWithCovarianceStamped();
+      auto cmd = random_twistwithcovariancestamped();
       this->congo_publisher_->publish(cmd.twist.twist);
       this->mekong_publisher_->publish(cmd);
     });

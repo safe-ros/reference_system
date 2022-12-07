@@ -34,6 +34,8 @@ class Cordoba final : public PublisherNode<std_msgs::msg::Float32>
 public:
   Cordoba(rclcpp::NodeOptions options);
   ~Cordoba() final = default;
+
+  void populate_msg(std_msgs::msg::Float32 &msg) final;
 };
 
 class Freeport final : public PublisherNode<std_msgs::msg::Int64>
@@ -41,6 +43,8 @@ class Freeport final : public PublisherNode<std_msgs::msg::Int64>
 public:
   Freeport(rclcpp::NodeOptions options);
   ~Freeport() final = default;
+
+  void populate_msg(std_msgs::msg::Int64 &msg) final;
 };
 
 class Medellin final : public PublisherNode<std_msgs::msg::Int32>
@@ -48,6 +52,8 @@ class Medellin final : public PublisherNode<std_msgs::msg::Int32>
 public:
   Medellin(rclcpp::NodeOptions options);
   ~Medellin() final = default;
+
+  void populate_msg(std_msgs::msg::Int32 &msg) final;
 };
 
 class Portsmouth final : public PublisherNode<std_msgs::msg::String>
@@ -55,6 +61,8 @@ class Portsmouth final : public PublisherNode<std_msgs::msg::String>
 public:
   Portsmouth(rclcpp::NodeOptions options);
   ~Portsmouth() final = default;
+
+  void populate_msg(std_msgs::msg::String &msg) final;
 };
 
 class Delhi final : public PublisherNode<sensor_msgs::msg::Image>
@@ -62,6 +70,8 @@ class Delhi final : public PublisherNode<sensor_msgs::msg::Image>
 public:
   Delhi(rclcpp::NodeOptions options);
   ~Delhi() final = default;
+
+  void populate_msg(sensor_msgs::msg::Image &msg) final;
 };
 
 class Hebron final : public PublisherNode<geometry_msgs::msg::Quaternion>
@@ -69,6 +79,8 @@ class Hebron final : public PublisherNode<geometry_msgs::msg::Quaternion>
 public:
   Hebron(rclcpp::NodeOptions options);
   ~Hebron() final = default;
+
+  void populate_msg(geometry_msgs::msg::Quaternion &msg) final;
 };
 
 class Kingston final : public PublisherNode<geometry_msgs::msg::Vector3>
@@ -76,6 +88,8 @@ class Kingston final : public PublisherNode<geometry_msgs::msg::Vector3>
 public:
   Kingston(rclcpp::NodeOptions options);
   ~Kingston() final = default;
+
+  void populate_msg(geometry_msgs::msg::Vector3 &msg) final;
 };
 }  // namespace reference_system
 #endif  // REFERENCE_SYSTEM__PUBLISHER_NODES_HPP_

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/taipei.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {

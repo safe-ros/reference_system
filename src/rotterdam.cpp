@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/rotterdam.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -27,7 +28,7 @@ Rotterdam::Rotterdam(rclcpp::NodeOptions options)
     10,
     [this](geometry_msgs::msg::TwistWithCovarianceStamped::UniquePtr msg) {
       (void) msg;
-      geometry_msgs::msg::Vector3Stamped pub_msg;
+      auto pub_msg = random_vector3stamped();
       murray_publisher_->publish(pub_msg);
     });
 }

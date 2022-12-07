@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/tripoli.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -27,7 +28,8 @@ Tripoli::Tripoli(rclcpp::NodeOptions options)
     10,
     [this](sensor_msgs::msg::LaserScan::UniquePtr msg) {
       (void) msg;
-      sensor_msgs::msg::PointCloud2 pc_msg;
+      sensor_msgs::msg::PointCloud2 pc_msg = random_pointcloud(1920*1080);
+
       loire_publisher_->publish(pc_msg);
     });
 

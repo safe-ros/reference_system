@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/mandalay.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -70,15 +71,15 @@ Mandalay::Mandalay(rclcpp::NodeOptions options)
   timer_ = create_wall_timer(
     std::chrono::milliseconds(100), [this]() {
       {
-        geometry_msgs::msg::Pose msg;
+        geometry_msgs::msg::Pose msg = random_pose();
         tagus_publisher_->publish(msg);
       }
       {
-        sensor_msgs::msg::Image msg;
+        sensor_msgs::msg::Image msg = random_image(640*480*3);
         missouri_publisher_->publish(msg);
       }
       {
-        sensor_msgs::msg::PointCloud2 msg;
+        sensor_msgs::msg::PointCloud2 msg = random_pointcloud(640*480);
         brazos_publisher_->publish(msg);
       }
     });
