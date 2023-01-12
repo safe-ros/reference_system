@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/hamburg.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -47,6 +48,7 @@ Hamburg::Hamburg(rclcpp::NodeOptions options)
     "danube",
     10,
     [this](std_msgs::msg::String::UniquePtr msg) {
+      msg->data = random_string(32);
       this->parana_publisher_->publish(std::move(msg));
     });
 }

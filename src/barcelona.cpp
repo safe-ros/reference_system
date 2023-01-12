@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/barcelona.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -27,7 +28,7 @@ Barcelona::Barcelona(rclcpp::NodeOptions options)
     10,
     [this](geometry_msgs::msg::TwistWithCovarianceStamped::UniquePtr msg) {
       (void) msg;
-      geometry_msgs::msg::WrenchStamped pub_msg;
+      geometry_msgs::msg::WrenchStamped pub_msg = random_wrenchstamped();
       lena_publisher_->publish(pub_msg);
     });
 }

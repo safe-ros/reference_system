@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/geneva.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -25,6 +26,7 @@ Geneva::Geneva(rclcpp::NodeOptions options)
     "parana",
     10,
     [this](std_msgs::msg::String::UniquePtr msg) {
+      msg->data = random_string(32);
       arkansas_publisher_->publish(std::move(msg));
     });
 

@@ -25,7 +25,7 @@ def generate_launch_description():
             name='reference_system_robot',
             namespace='',
             package='rclcpp_components',
-            executable='component_container',
+            executable='component_container_isolated',
             composable_node_descriptions=[
                 ComposableNode(
                     package='reference_system',

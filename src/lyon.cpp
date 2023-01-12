@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/lyon.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -31,6 +32,7 @@ Lyon::Lyon(rclcpp::NodeOptions options)
 
 void Lyon::on_receive(MsgType::UniquePtr msg)
 {
+  msg->data = random_number<float>();
   publisher_->publish(std::move(msg));
 }
 

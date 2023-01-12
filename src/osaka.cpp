@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "reference_system/osaka.hpp"
+#include "utils.hpp"
 
 namespace reference_system
 {
@@ -42,8 +43,10 @@ Osaka::Osaka(rclcpp::NodeOptions options)
     10,
     [this](sensor_msgs::msg::Image::UniquePtr msg) {
       (void) msg;
-      sensor_msgs::msg::PointCloud2 pc_msg;
-      sensor_msgs::msg::LaserScan scan_msg;
+
+      sensor_msgs::msg::PointCloud2 pc_msg = random_pointcloud(64*480);
+      sensor_msgs::msg::LaserScan scan_msg = random_laserscan();
+
       salween_publisher_->publish(pc_msg);
       godavari_publisher_->publish(scan_msg);
     });
