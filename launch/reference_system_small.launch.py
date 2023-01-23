@@ -12,22 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Launch the reference system across two containers"""
+"""Launch the reference system in a single container"""
 
 import launch
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
-from tracetools_launch.action import Trace
 
 
 def generate_launch_description():
-    """Generate launch description with multiple components."""
-
-    robot_container = ComposableNodeContainer(
+    full_container = ComposableNodeContainer(
             name='reference_system_robot',
             namespace='',
             package='rclcpp_components',
-            executable='component_container_isolated',
+            executable='component_container',
             composable_node_descriptions=[
                 ComposableNode(
                     package='reference_system',
@@ -84,17 +81,7 @@ def generate_launch_description():
                 ComposableNode(
                     package='reference_system',
                     plugin='reference_system::Ponce',
-                )
-            ],
-            output='screen',
-    )
-
-    control_container = ComposableNodeContainer(
-            name='reference_system_control',
-            namespace='',
-            package='rclcpp_components',
-            executable='component_container_isolated',
-            composable_node_descriptions=[
+                ),
                 ComposableNode(
                     package='reference_system',
                     plugin='reference_system::Geneva',
@@ -123,4 +110,4 @@ def generate_launch_description():
             output='screen',
     )
 
-    return launch.LaunchDescription([robot_container, control_container])
+    return launch.LaunchDescription([full_container])
