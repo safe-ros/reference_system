@@ -19,15 +19,21 @@ find_package(sensor_msgs REQUIRED)
 add_library(reference_system_nodes SHARED
   src/arequipa.cpp
   src/barcelona.cpp
+  src/cordoba.cpp
+  src/delhi.cpp
+  src/freeport.cpp
   src/geneva.cpp
   src/georgetown.cpp
   src/hamburg.cpp
+  src/hebron.cpp
+  src/kingston.cpp
   src/lyon.cpp
   src/mandalay.cpp
+  src/medellin.cpp
   src/monaco.cpp
   src/osaka.cpp
   src/ponce.cpp
-  src/publisher_nodes.cpp
+  src/portsmouth.cpp
   src/rotterdam.cpp
   src/taipei.cpp
   src/tripoli.cpp
@@ -42,28 +48,37 @@ ament_target_dependencies(reference_system_nodes
   "sensor_msgs"
 )
 
-rclcpp_components_register_nodes(reference_system_nodes
-  "reference_system::Arequipa"
-  "reference_system::Barcelona"
-  "reference_system::Cordoba"
-  "reference_system::Delhi"
-  "reference_system::Freeport"
-  "reference_system::Geneva"
-  "reference_system::Georgetown"
-  "reference_system::Hamburg"
-  "reference_system::Hebron"
-  "reference_system::Kingston"
-  "reference_system::Lyon"
-  "reference_system::Osaka"
-  "reference_system::Mandalay"
-  "reference_system::Medellin"
-  "reference_system::Monaco"
-  "reference_system::Ponce"
-  "reference_system::Portsmouth"
-  "reference_system::Rotterdam"
-  "reference_system::Taipei"
-  "reference_system::Tripoli"
+set(NODES
+  "Arequipa"
+  "Barcelona"
+  "Cordoba"
+  "Delhi"
+  "Freeport"
+  "Geneva"
+  "Georgetown"
+  "Hamburg"
+  "Hebron"
+  "Kingston"
+  "Lyon"
+  "Osaka"
+  "Mandalay"
+  "Medellin"
+  "Monaco"
+  "Ponce"
+  "Portsmouth"
+  "Rotterdam"
+  "Taipei"
+  "Tripoli"
 )
+
+foreach(NODE ${NODES})
+  string(TOLOWER ${NODE} NODE_LOWER)
+
+  rclcpp_components_register_node(reference_system_nodes
+    PLUGIN "reference_system::${NODE}"
+    EXECUTABLE ${NODE_LOWER}
+  )
+endforeach()
 
 target_include_directories(reference_system_nodes PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

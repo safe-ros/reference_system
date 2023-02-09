@@ -75,11 +75,11 @@ Mandalay::Mandalay(rclcpp::NodeOptions options)
         tagus_publisher_->publish(msg);
       }
       {
-        sensor_msgs::msg::Image msg = random_image(640*480*3);
+        sensor_msgs::msg::Image msg = random_image(100);
         missouri_publisher_->publish(msg);
       }
       {
-        sensor_msgs::msg::PointCloud2 msg = random_pointcloud(640*480);
+        sensor_msgs::msg::PointCloud2 msg = random_pointcloud(100);
         brazos_publisher_->publish(msg);
       }
     });
