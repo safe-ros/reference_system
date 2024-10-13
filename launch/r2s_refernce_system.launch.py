@@ -34,7 +34,15 @@ def generate_launch_description():
             name='action_server'
         )
 
+    lifecycle_talker = Node(
+            package='lifecycle',
+            namespace='lifecycle_demo',
+            executable='lifecycle_talker',
+            name='lc_talker'
+        )
+
     return LaunchDescription([
         dummy_robot_bringup_with_namespace,
         fib_action_server,
+        lifecycle_talker,
     ])
